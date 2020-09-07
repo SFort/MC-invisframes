@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "invisframes",
+  "version": "${version}",
+
+  "name": "Invisible Frames",
+  "description": "Hold Shift to make Item Frames Invisible",
+  "authors": [
+    "SFort"
+  ],
+  "contact": {
+    "sources": "https://github.com/SFort/MC-invisframes"
+  },
+
+  "license": "MIT",
+
+  "environment": "client",
+  "mixins": [
+    "invisframes.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
