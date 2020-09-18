@@ -4,6 +4,7 @@
   "package": "sf.ssf.sfort.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "FrameEntity"
   ],
   "client": [
     "FrameRender"

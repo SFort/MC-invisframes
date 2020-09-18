@@ -14,10 +14,15 @@
 
   "license": "MIT",
 
-  "environment": "client",
+  "environment": "*",
   "mixins": [
     "invisframes.mixins.json"
   ],
+  "entrypoints": {
+    "main": [
+      "sf.ssf.sfort.FrameConf"
+    ]
+  },
 
   "depends": {
     "fabricloader": "*",
