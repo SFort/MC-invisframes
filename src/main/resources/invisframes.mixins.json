@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "sf.ssf.sfort.invisframes.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "invisframes.refmap.json",
+  "mixins": [
+    "FrameEntity"
+  ],
+  "client": [
+    "FrameRender"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

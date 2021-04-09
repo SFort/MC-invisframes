@@ -1,0 +1,19 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "[28,)" #mandatory (28 is current forge version)
+
+license = "MIT License"
+[[mods]] #mandatory
+modId = "invisframes"
+version = "${file.jarVersion}" #mandatory
+displayName = "invisframes" #mandatory
+displayURL="http://sfort.ssf.tf/"
+authors = "sfort"
+description = '''
+mod by someone to lazy to write descriptions
+'''
+[[dependencies.tabletweaks]]
+modId = "minecraft"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
