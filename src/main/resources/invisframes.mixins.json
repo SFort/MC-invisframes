@@ -1,10 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "sf.ssf.sfort.mixin",
+  "package": "tf.ssf.sfort.invisframes.mixin",
   "compatibilityLevel": "JAVA_16",
+  "plugin": "tf.ssf.sfort.invisframes.mixin.FrameConf",
   "mixins": [
-    "FrameEntity"
+    "FrameEntity",
+    "FrameEntityServer"
   ],
   "client": [
     "FrameRender"
