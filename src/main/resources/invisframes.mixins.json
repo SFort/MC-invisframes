@@ -9,7 +9,8 @@
     "FrameEntityServer"
   ],
   "client": [
-    "FrameRender"
+    "FrameRender",
+    "FrameRenderForce"
   ],
   "injectors": {
     "defaultRequire": 1
