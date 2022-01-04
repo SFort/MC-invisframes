@@ -1,0 +1,18 @@
+{
+    "required": true,
+    "minVersion": "0.5.3",
+    "package": "tf.ssf.sfort.invisframes.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "refmap": "mixins.invisframes.refmap.json",
+    "mixins": [
+        "FrameEntity",
+        "FrameEntityServer"
+    ],
+    "client": [
+        "FrameRender",
+        "RenderStop"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

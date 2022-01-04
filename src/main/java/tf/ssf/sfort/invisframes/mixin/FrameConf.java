@@ -1,10 +1,9 @@
 package tf.ssf.sfort.invisframes.mixin;
 
-import net.fabricmc.loader.api.FabricLoader;
+import com.mumfrey.liteloader.core.LiteLoader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
@@ -12,20 +11,17 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.*;
 
+import static tf.ssf.sfort.invisframes.Vals.*;
+
 public class FrameConf implements IMixinConfigPlugin {
     public static final String mixin = "tf.ssf.sfort.invisframes.mixin";
     public static Logger LOGGER = LogManager.getLogger();
-
-    public static boolean clientForceInvis = false;
-    public static boolean allowProjectile = false;
-    //byte0-client, byte1-server
-    public static int itemCheck = 1;
 
     @Override
     public void onLoad(String mixinPackage) {
         // Configs
         File confFile = new File(
-                FabricLoader.getInstance().getConfigDir().toString(),
+                LiteLoader.getConfigFolder().toString(),
                 "InvisFrames.conf"
         );
         try {
@@ -58,17 +54,22 @@ public class FrameConf implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return switch (mixinClassName) {
-            case mixin + ".FrameEntity" -> (itemCheck & 2) == 0;
-            case mixin + ".FrameEntityServer" -> (itemCheck & 2) != 0;
-            case mixin + ".FrameRender" -> (itemCheck & 1) != 0 && !clientForceInvis;
-            case mixin + ".FrameRenderForce" -> (itemCheck & 1) != 0 && clientForceInvis;
-            default -> true;
-        };
+        if (mixinClassName.equals(mixin + ".FrameEntity")) return (itemCheck & 2) == 0;
+        else if (mixinClassName.equals(mixin + ".FrameEntityServer"))  return (itemCheck & 2) != 0;
+        else if (mixinClassName.equals(mixin + ".FrameRender")) return (itemCheck & 1) != 0;
+        return true;
     }
     @Override public String getRefMapperConfig() { return null; }
     @Override public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) { }
     @Override public List<String> getMixins() { return null; }
-    @Override public void preApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) { }
-    @Override public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) { }
+
+    @Override
+    public void preApply(java.lang.String targetClassName, org.spongepowered.asm.lib.tree.ClassNode targetClass, java.lang.String mixinClassName, IMixinInfo mixinInfo) {
+
+    }
+
+    @Override
+    public void postApply(java.lang.String targetClassName, org.spongepowered.asm.lib.tree.ClassNode targetClass, java.lang.String mixinClassName, IMixinInfo mixinInfo) {
+
+    }
 }

@@ -1,5 +1,7 @@
 # MC-invisframes
 
+# This branch requires lite loader
+
 Shift punching item frames toggles visibility  
 Empty item frames will always be visible
 
