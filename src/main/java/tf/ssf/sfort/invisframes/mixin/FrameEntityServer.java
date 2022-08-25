@@ -6,6 +6,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.decoration.AbstractDecorationEntity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = ItemFrameEntity.class, priority = 2111)
+@Mixin(ItemFrameEntity.class)
 public abstract class FrameEntityServer extends AbstractDecorationEntity {
 	protected FrameEntityServer(EntityType<? extends AbstractDecorationEntity> entityType, World world) {
 		super(entityType, world);
@@ -24,10 +27,15 @@ public abstract class FrameEntityServer extends AbstractDecorationEntity {
 	@Inject(method = "damage",at =@At("HEAD"),cancellable = true)
 	public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
 		Entity attacker = source.getAttacker();
-		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowProjectile || source.getName().equals("player"))) {
+		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowFrameProjectile || source.getName().equals("player"))) {
+			if (FrameConf.playFrameSound && world instanceof ServerWorld) {
+				world.playSound(null, getBlockPos(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.PLAYERS, 1, .7f + random.nextFloat()*.3f);
+			}
 			this.setInvisible(!(this.isInvisible() || this.getHeldItemStack().isEmpty()));
 			info.setReturnValue(true);
-		}else
+			info.cancel();
+		} else {
 			this.setInvisible(false);
+		}
 	}
 }

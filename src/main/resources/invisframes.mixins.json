@@ -6,11 +6,16 @@
   "plugin": "tf.ssf.sfort.invisframes.mixin.FrameConf",
   "mixins": [
     "FrameEntity",
-    "FrameEntityServer"
+    "FrameEntityServer",
+    "StandEntity",
+    "StandEntityServer"
   ],
   "client": [
     "FrameRender",
-    "FrameRenderForce"
+    "FrameRenderForce",
+    "FrameName",
+    "FrameNameAlways",
+    "StandRender"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = ItemFrameEntityRenderer.class, priority = 2111)
+@Mixin(ItemFrameEntityRenderer.class)
 public abstract class FrameRenderForce {
 	@Redirect(method = "render",at =@At(value = "INVOKE",target = "Lnet/minecraft/entity/decoration/ItemFrameEntity;isInvisible()Z",ordinal = 0))
 	public boolean itemBeInvis(ItemFrameEntity itemFrameEntity) {
