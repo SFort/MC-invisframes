@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import tf.ssf.sfort.invisframes.InvisFramesShared;
 
 @Mixin(ArmorStandEntity.class)
 public abstract class StandEntityServer extends LivingEntity {
@@ -25,7 +26,7 @@ public abstract class StandEntityServer extends LivingEntity {
 	public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
 		Entity attacker = source.getAttacker();
 		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowStandProjectile || source.getName().equals("player"))) {
-			this.setInvisible(!(this.isInvisible() || FrameConf.IsEmpty((ArmorStandEntity) (Object) this)));
+			this.setInvisible(!(this.isInvisible() || InvisFramesShared.IsEmpty((ArmorStandEntity) (Object) this)));
 			info.setReturnValue(true);
 			info.cancel();
 		} else {
@@ -34,7 +35,7 @@ public abstract class StandEntityServer extends LivingEntity {
 	}
 	@Inject(method="equipStack(Lnet/minecraft/entity/EquipmentSlot;Lnet/minecraft/item/ItemStack;)V", at=@At("RETURN"))
 	public void update(CallbackInfo ci) {
-		if (FrameConf.IsEmpty((ArmorStandEntity) (Object) this)) {
+		if (InvisFramesShared.IsEmpty((ArmorStandEntity) (Object) this)) {
 			this.setInvisible(false);
 		}
 	}

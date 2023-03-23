@@ -6,6 +6,7 @@ import net.minecraft.entity.decoration.ArmorStandEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import tf.ssf.sfort.invisframes.InvisFramesShared;
 
 @Mixin(ArmorStandEntityRenderer.class)
 public abstract class StandRender {
@@ -14,7 +15,7 @@ public abstract class StandRender {
 	@ModifyVariable(method="getRenderLayer(Lnet/minecraft/entity/LivingEntity;ZZZ)Lnet/minecraft/client/render/RenderLayer;", at=@At("HEAD"), ordinal=0, argsOnly=true)
 	public boolean getRenderLayer(boolean old, LivingEntity entity, boolean bl) {
 		if (entity instanceof ArmorStandEntity) {
-			if (FrameConf.IsEmpty((ArmorStandEntity) entity)) {
+			if (InvisFramesShared.IsEmpty((ArmorStandEntity) entity)) {
 				survivalflight$secondBool = false;
 				return true;
 			} else {
