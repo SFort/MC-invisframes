@@ -28,6 +28,7 @@ public abstract class FrameEntityServer extends AbstractDecorationEntity {
 	public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
 		Entity attacker = source.getAttacker();
 		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowFrameProjectile || source.getName().equals("player"))) {
+			World world = getWorld();
 			if (FrameConf.playFrameSound && world instanceof ServerWorld) {
 				world.playSound(null, getBlockPos(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.PLAYERS, 1, .7f + random.nextFloat()*.3f);
 			}
