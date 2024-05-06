@@ -26,7 +26,7 @@ public abstract class FrameEntity extends AbstractDecorationEntity {
 		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowFrameProjectile || source.getName().equals("player"))) {
 			World world = getWorld();
 			if (FrameConf.playFrameSound && world instanceof ServerWorld) {
-				world.playSound(null, getBlockPos(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.PLAYERS, 1, .7f + random.nextFloat()*.3f);
+				world.playSound(null, getBlockPos(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC.value(), SoundCategory.PLAYERS, 1, .7f + random.nextFloat()*.3f);
 			}
 			this.setInvisible(!this.isInvisible());
 			info.setReturnValue(true);
