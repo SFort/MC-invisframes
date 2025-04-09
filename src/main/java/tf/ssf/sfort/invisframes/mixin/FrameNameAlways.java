@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemFrameEntityRenderer.class)
 public abstract class FrameNameAlways {
-	@Inject(method="hasLabel(Lnet/minecraft/entity/decoration/ItemFrameEntity;)Z",at=@At("HEAD"), cancellable = true)
-	public void itemHideName(ItemFrameEntity itemFrameEntity, CallbackInfoReturnable<Boolean> cir) {
+	@Inject(method="hasLabel",at=@At("HEAD"), cancellable = true)
+	public void itemHideName(CallbackInfoReturnable<Boolean> cir) {
 		cir.setReturnValue(false);
 		cir.cancel();
 	}

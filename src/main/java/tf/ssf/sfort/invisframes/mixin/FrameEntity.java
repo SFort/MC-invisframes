@@ -21,10 +21,9 @@ public abstract class FrameEntity extends AbstractDecorationEntity {
 	}
 
 	@Inject(method = "damage",at =@At("HEAD"),cancellable = true)
-	public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
+	public void damage(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
 		Entity attacker = source.getAttacker();
 		if (attacker !=null && attacker.isSneaky() && (FrameConf.allowFrameProjectile || source.getName().equals("player"))) {
-			World world = getWorld();
 			if (FrameConf.playFrameSound && world instanceof ServerWorld) {
 				world.playSound(null, getBlockPos(), SoundEvents.ITEM_ARMOR_EQUIP_GENERIC.value(), SoundCategory.PLAYERS, 1, .7f + random.nextFloat()*.3f);
 			}
