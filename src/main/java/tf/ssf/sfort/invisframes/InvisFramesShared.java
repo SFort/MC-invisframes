@@ -1,14 +1,16 @@
 package tf.ssf.sfort.invisframes;
 
 import net.minecraft.client.render.entity.state.ArmorStandEntityRenderState;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.ItemStack;
 
 public class InvisFramesShared {
 	public static boolean IsEmpty(ArmorStandEntity entity) {
-		for (ItemStack item : entity.getArmorItems())
-			if (!item.isEmpty())
-				return false;
+		if (entity.hasStackEquipped(EquipmentSlot.HEAD)) return false;
+		if (entity.hasStackEquipped(EquipmentSlot.CHEST)) return false;
+		if (entity.hasStackEquipped(EquipmentSlot.LEGS)) return false;
+		if (entity.hasStackEquipped(EquipmentSlot.FEET)) return false;
 		return true;
 	}
 	public static boolean IsEmpty(ArmorStandEntityRenderState entity) {

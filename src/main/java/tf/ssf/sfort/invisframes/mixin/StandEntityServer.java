@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import tf.ssf.sfort.invisframes.InvisFramesShared;
 
@@ -34,8 +33,8 @@ public abstract class StandEntityServer extends LivingEntity {
 			this.setInvisible(false);
 		}
 	}
-	@Inject(method="equipStack(Lnet/minecraft/entity/EquipmentSlot;Lnet/minecraft/item/ItemStack;)V", at=@At("RETURN"))
-	public void update(CallbackInfo ci) {
+	@Inject(method="equip", at=@At("RETURN"))
+	public void update(CallbackInfoReturnable<Boolean> ci) {
 		if (InvisFramesShared.IsEmpty((ArmorStandEntity) (Object) this)) {
 			this.setInvisible(false);
 		}
